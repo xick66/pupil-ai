@@ -2,7 +2,7 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\Software\Classes\Directory\shell\coPet]
 "MUIVerb"="Co-pet read Dir"
-"icon"="E:\\Project\\Gemini Hackathon\\co-pet\\icon.ico"
+"icon"="C:\\Users\\prama\\Desktop\\co-pet\\icon.ico"
 
 [HKEY_LOCAL_MACHINE\Software\Classes\Directory\shell\coPet\command]
-@="cmd.exe /c pythonw \"E:\\Project\\Gemini Hackathon\\co-pet\\context_script.py\" --directory \"%V\""
+@="cmd.exe /c pythonw \"C:\\Users\\prama\\Desktop\\co-pet\\context_script.py\" --directory \"%V\""

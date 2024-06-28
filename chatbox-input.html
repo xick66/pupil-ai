@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
   </head>
@@ -10,4 +9,19 @@
     <input class="chatbox" id="chatbox" placeholder="Say something ..."></input>
     <script src="./chatbox-input-renderer.js"></script>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+</head>
+<body style="margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; background-color: #f0f0f0;">
+    <div style="padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: white; border-radius: 8px;">
+        <input class="chatbox" id="chatbox" placeholder="Say something ..." style="font-size: 16px; padding: 10px 15px; width: 300px; margin-right: 10px; border: 2px solid #ccc; border-radius: 4px;">
+        <button id="startVoice" style="padding: 10px 20px; font-size: 16px; color: white; background-color: #007BFF; border: none; border-radius: 4px; cursor: pointer;">hello</button>
+    </div>
+    <script src="./chatbox-input-renderer.js"></script>
+</body>
 </html>
