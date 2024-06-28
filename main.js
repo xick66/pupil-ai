@@ -117,7 +117,7 @@ function createPetWindow() {
   petWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   petWindow.setAlwaysOnTop(true, 'screen-saver', 1);
   petWindow.setIgnoreMouseEvents(true);
-  // petWindow.webContents.openDevTools({mode: 'detach'});
+  petWindow.webContents.openDevTools({mode: 'detach'});
 }
 
 function createChatboxInputWindow() {
@@ -140,7 +140,7 @@ function createChatboxInputWindow() {
   chatboxInputWindow.loadFile("chatbox-input.html");
   chatboxInputWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   chatboxInputWindow.setAlwaysOnTop(true, 'screen-saver', 1);
-  // chatboxInputWindow.webContents.openDevTools({mode: "detach"});
+  chatboxInputWindow.webContents.openDevTools({mode: "detach"});
 }
 
 function createChatboxResponseWindow() {
