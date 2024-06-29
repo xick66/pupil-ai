@@ -21,6 +21,7 @@ SHASUMS256.txt
 **/package-lock.json
 compile_commands.json
 .envrc
+venv/
 
 *.ipynb
 
@@ -55,3 +56,5 @@ ts-gen
 patches/mtime-cache.json
 
 spec/fixtures/logo.png
+
+
