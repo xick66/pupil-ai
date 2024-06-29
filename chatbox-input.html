@@ -1,26 +1,21 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-    <link href="./styles.css" rel="stylesheet">
-  </head>
-  <body style="margin: 0;">
-    <input class="chatbox" id="chatbox" placeholder="Say something ..."></input>
-    <script src="./chatbox-input-renderer.js"></script>
-  </body>
-</html> -->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com; script-src 'self'; style-src 'self' 'unsafe-inline';">
+    <title>Chat and Video</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body style="margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; background-color: #f0f0f0;">
-    <div style="padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: white; border-radius: 8px;">
-        <input class="chatbox" id="chatbox" placeholder="Say something ..." style="font-size: 16px; padding: 10px 15px; width: 300px; margin-right: 10px; border: 2px solid #ccc; border-radius: 4px;">
-        <button id="startVoice" style="padding: 10px 20px; font-size: 16px; color: white; background-color: #007BFF; border: none; border-radius: 4px; cursor: pointer;">hello</button>
+<body class="flex items-center justify-center h-screen w-screen bg-gray-200">
+    <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md border border-gray-300 w-full h-full">
+        <div class="chatbox-container w-full mb-4 flex flex-col items-center">
+            <input class="chatbox w-full p-2 border-2 border-gray-300 rounded-md" id="chatbox" placeholder="Say something...">
+            <button id="startVoice" class="mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">hello</button>
+        </div>
+        <div class="video-container w-full h-full flex justify-center items-center">
+            <iframe class="w-full h-full border-2 border-gray-300 rounded-md" src="https://www.youtube.com/embed/tZUqkP4jKmU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
     </div>
     <script src="./chatbox-input-renderer.js"></script>
 </body>

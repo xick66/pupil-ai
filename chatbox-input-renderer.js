@@ -42,43 +42,35 @@ window.electronAPI.onShow(() => {
   chatbox.focus();
 });
 
-const recognition = new window.webkitSpeechRecognition();
-recognition.continuous = false;
-recognition.interimResults = false;
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+retryCount=2
+maxRetries=2
+recognition.onerror = function(event) {
+    console.error('Speech Recognition Error:', event.error);
 
-recognition.onaudiostart = function() {
-  console.log('Audio capturing started');
-};
-
-recognition.onaudioend = function() {
-  console.log('Audio capturing ended');
+    if (event.error === 'network') {
+        console.log('Network error, attempting retry', retryCount);
+        if (retryCount < maxRetries) {
+            retryCount++;
+            setTimeout(() => {
+                recognition.start();
+            }, retryInterval);
+        } else {
+            console.error('Max retries reached. Please check your network connection.');
+        }
+    }
 };
 
 recognition.onstart = function() {
-  console.log('Speech recognition service has started');
+    console.log('Speech recognition service has started');
 };
 
-recognition.onend = function() {
-  console.log('Speech recognition service disconnected');
+recognition.onaudiostart = function() {
+    console.log('Audio capturing started');
 };
 
-recognition.onresult = function(event) {
-  console.log('Result received');
-  if (event.results.length > 0) {
-    const transcript = event.results[0][0].transcript;
-    console.log("Voice Input:", transcript);
-    chatbox.value = transcript;
-    submitMessage();
-  } else {
-    console.log("No speech was recognized");
-  }
+recognition.onaudioend = function() {
+    console.log('Audio capturing ended');
 };
 
-recognition.onerror = function(event) {
-  console.error('Speech Recognition Error:', event.error);
-};
-
-startVoiceButton.onclick = function() {
-  console.log('Starting speech recognition...');
-  recognition.start();
-};
+recognition.start();
