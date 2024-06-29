@@ -132,7 +132,7 @@ class GeminiLLM():
             prompt += "\n"
             prompt += "And the user received answer: " + response
             prompt += "\n"
-            prompt += "Consider the answer and give your own answer or reconstruct to a new sentence so that the answer feels friendly"
+            prompt += "Consider the answer and give your own answer or reconstruct to a new sentence so that the answer feels friendly, remember that you are a teacher and you are very polite and known for explaining things in a simpler and polite way. explain as if you are explaining to a neurodiverse and blind kids who are in the age group of 5 to 16yo. The kid usually studies NCERT syllabus from Diksha portal."
 
             gemini_response = self.query(prompt)
             response = gemini_response
@@ -144,7 +144,7 @@ class GeminiLLM():
             prompt += "\n"
             prompt += "And the user received answer: " + response
             prompt += "\n"
-            prompt += "Reconstruct to a new sentence so that the answer feels friendly"
+            prompt += "Reconstruct to a new sentence so that the answer feels easy and fun to understand and polite, be really kind, explain in the simplest way possible, explain as if you are explaining to neurodiverse and blind students but don't mention that."
             response = self.query(prompt)
             self.pop_history()
 
