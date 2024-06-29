@@ -23,7 +23,7 @@ def conversation():
     arguments = " ".join(parts[1:])
     if command.startswith('/search'):
         response = gemini.query_search(arguments)
-    elif command.startswith('/screenshot'):
+    elif command.startswith('/s'):
         response = screenshot(arguments)['initial_response']
         print(response)
     else:

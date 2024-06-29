@@ -233,67 +233,77 @@ function drawResponseBubble(borderWidth, borderHeight, orientation) {
 
 var id = null;
 
-
 function drawResponse(text, orientation) {
-  var borderHeight = 0
-  var borderWidth = 0 
-
-  text = text.replace("\t", "").replace("\n", "").trim()
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-  var lines = text.split("\n")
-  var maxWordWidth = 0;
-
-  lines.forEach(line => {
-    line.split(" ").forEach(word => {
-      const wordWidth = ctx.measureText(word).width;
+  if (text.includes('<img')) {
+    // If the text includes an image tag, render it as HTML
+    displayHtmlContent(text);
+  } else {
+    // Else, proceed with drawing text in a bubble as usual
+    var borderHeight = 0;
+    var borderWidth = 0;
     
-      if (wordWidth > maxWordWidth) {
-        maxWordWidth = wordWidth;
-      }
-    })
-  })
-
-  borderWidth = maxWordWidth < 300 ? 300 : maxWordWidth
-
-  const wrappedLines = lines.flatMap(line => getWrappedLines(ctx, line, borderWidth))
-
-  borderHeight = lineheight * (wrappedLines.length + 1) - 10
-
-  var maxLineWidth = 0
-
-  wrappedLines.forEach(line => {
-    const lineWidth = ctx.measureText(line).width;
+    text = text.replace("\t", "").replace("\n", "").trim();
     
-      if (lineWidth > maxLineWidth) {
-        maxLineWidth = lineWidth;
-      }
-  })
-
-  borderWidth = parseInt(maxLineWidth)
-
-  drawResponseBubble(borderWidth, borderHeight, orientation)
-
-  ctx.fillStyle = "black";
-  for (var i = 0; i < wrappedLines.length; i++) {
-    ctx.fillText(wrappedLines[i], cornerWidth, cornerHeight + ((i + 0.5) * lineheight));
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    var lines = text.split("\n");
+    var maxWordWidth = 0;
+    
+    lines.forEach(line => {
+      line.split(" ").forEach(word => {
+        const wordWidth = ctx.measureText(word).width;
+      
+        if (wordWidth > maxWordWidth) {
+          maxWordWidth = wordWidth;
+        }
+      })
+    });
+    
+    borderWidth = maxWordWidth < 300 ? 300 : maxWordWidth;
+    
+    const wrappedLines = lines.flatMap(line => getWrappedLines(ctx, line, borderWidth));
+    
+    borderHeight = lineheight * (wrappedLines.length + 1) - 10;
+    
+    var maxLineWidth = 0;
+    
+    wrappedLines.forEach(line => {
+      const lineWidth = ctx.measureText(line).width;
+      
+        if (lineWidth > maxLineWidth) {
+          maxLineWidth = lineWidth;
+        }
+    });
+    
+    borderWidth = parseInt(maxLineWidth);
+    
+    drawResponseBubble(borderWidth, borderHeight, orientation);
+    
+    ctx.fillStyle = "black";
+    for (var i = 0; i < wrappedLines.length; i++) {
+      ctx.fillText(wrappedLines[i], cornerWidth, cornerHeight + ((i + 0.5) * lineheight));
+    }
   }
-
-  const bubbleWidth = 2 * cornerWidth + borderWidth
-  const bubbleHeight = 6 * cornerHeight + borderHeight
-
-  window.electronAPI.submitMessage("response-size", {
-    width: bubbleWidth,
-    height: bubbleHeight 
-  })
-
-  if (id) { window.clearTimeout(id) }
-  id = window.setTimeout(() => {
-    window.electronAPI.submitMessage("response-close", null)
-  }, 30000)
 }
 
+function displayHtmlContent(htmlContent) {
+  const htmlContainer = document.createElement('div');
+  htmlContainer.innerHTML = htmlContent;
+  htmlContainer.style.position = 'absolute';
+  htmlContainer.style.top = '50%';
+  htmlContainer.style.left = '50%';
+  htmlContainer.style.transform = 'translate(-50%, -50%)';
+  htmlContainer.style.zIndex = '1000'; // Ensure it is above other content
+  
+  document.body.appendChild(htmlContainer);
+  
+  // Close the HTML content after a timeout
+  if (id) { window.clearTimeout(id); }
+  id = window.setTimeout(() => {
+    document.body.removeChild(htmlContainer);
+    window.electronAPI.submitMessage("response-close", null);
+  }, 30000); // Adjust timeout as needed
+}
 
 // Function to perform text-to-speech
 function speak(text) {
@@ -305,6 +315,8 @@ function speak(text) {
 canvas.addEventListener("click", () => { window.electronAPI.submitMessage("response-close", null) });
 
 window.electronAPI.onReceiveMessage((message) => {
+  console.log("Received message:", message);
   drawResponse(message.text, message.orientation);
+  
   speak(message.text); // Adding the speech synthesis call here
 });
