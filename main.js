@@ -143,6 +143,38 @@ function createChatboxInputWindow() {
   chatboxInputWindow.webContents.openDevTools({mode: "detach"});
 }
 
+// function createChatboxInputWindow() {
+//   const primaryDisplay = screen.getPrimaryDisplay();
+//   const workAreaSize = primaryDisplay.workAreaSize;
+
+//   const gapSize = 10; 
+//   chatboxInputWindow = new BrowserWindow({
+//     width: 800,
+//     height: 600,
+//     // x: gapSize,
+//     // y: gapSize,
+//     transparent: true,
+//     frame: false,
+//     skipTaskbar: true,
+//     useContentSize: true,
+//     resizable: false, 
+//     show: false,
+//     webPreferences: {
+//       preload: path.join(__dirname, "preload.js"),
+//       nodeIntegration: true,
+//       enableRemoteModule: true,
+//       contextIsolation: true, 
+//       webSecurity: false
+//     },
+//   });
+
+//   chatboxInputWindow.loadFile("chatbox-input.html");
+//   chatboxInputWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+//   chatboxInputWindow.setAlwaysOnTop(true, 'screen-saver', 1);
+//   chatboxInputWindow.webContents.openDevTools({mode: "detach"});
+// }
+
+
 function createChatboxResponseWindow() {
   chatboxResponseWindow = new BrowserWindow({
     width: 1000 * config.SCALE,

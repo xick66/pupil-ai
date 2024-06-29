@@ -12,7 +12,3 @@ ipcRenderer.on('petPosition', (event, newPosition) => {
   window.dispatchEvent(new CustomEvent('petPosition', { detail: newPosition }));
 });
   
-window.addEventListener('DOMContentLoaded', () => {
-  const { webkitSpeechRecognition } = window;
-  window.webkitSpeechRecognition = webkitSpeechRecognition;
-});

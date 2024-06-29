@@ -8,15 +8,40 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="flex items-center justify-center h-screen w-screen bg-gray-200">
+
+    <div class="w-full">
+        <input class="chatbox w-full p-2 border-2 border-gray-300 rounded-md" id="chatbox" placeholder="Ask Pupil+">
+    </div>
+    <script src="./chatbox-input-renderer.js"></script>
+</body>
+</html> 
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy">
+    <title>Chat and Video</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center h-screen w-screen bg-gray-200">
+    <div class="bg-blue-500">
+        <input class="chatbox w-full p-2 border-2 border-gray-300 rounded-md" id="chatbox" placeholder="Ask Pupil+">
+    </div>
     <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md border border-gray-300 w-full h-full">
-        <div class="chatbox-container w-full mb-4 flex flex-col items-center">
-            <input class="chatbox w-full p-2 border-2 border-gray-300 rounded-md" id="chatbox" placeholder="Say something...">
-            <button id="startVoice" class="mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">hello</button>
+        <input type="text" id="videoLink" class="w-full p-2 border-2 border-gray-300 rounded-md" placeholder="Enter video link here">
+        <div class="my-4">
+            <label><input type="radio" name="videoType" value="youtube" checked> YouTube</label>
+            <label><input type="radio" name="videoType" value="drive"> Google Drive</label>
         </div>
-        <div class="video-container w-full h-full flex justify-center items-center">
-            <iframe class="w-full h-full border-2 border-gray-300 rounded-md" src="https://www.youtube.com/embed/tZUqkP4jKmU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button onclick="updateVideo()" class="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Load Video</button>
+        <div class="video-container w-full h-full flex justify-center items-center mt-4">
+            <iframe id="videoFrame" class="w-full h-full border-2 border-gray-300 rounded-md" src="" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
     <script src="./chatbox-input-renderer.js"></script>
 </body>
-</html>
+</html> -->

@@ -74,3 +74,19 @@ recognition.onaudioend = function() {
 };
 
 recognition.start();
+
+function updateVideo() {
+  const link = document.getElementById('videoLink').value;
+  const type = document.querySelector('input[name="videoType"]:checked').value;
+  let embedLink = "";
+
+  if (type === "youtube") {
+      const videoId = link.split('v=')[1].split('&')[0];
+      embedLink = `https://www.youtube.com/embed/${videoId}`;
+  } else if (type === "drive") {
+      const driveId = link.split('/d/')[1].split('/')[0];
+      embedLink = `https://drive.google.com/file/d/${driveId}/preview`;
+  }
+
+  document.getElementById('videoFrame').src = embedLink;
+}
