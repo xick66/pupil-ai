@@ -1,0 +1,11 @@
+.app {
+  padding: 20px;
+  min-height: 100vh;
+}
+
+body {
+  background-repeat: space;
+  background-attachment: fixed;
+  background-size: 300px;
+  padding: 30px;
+}
