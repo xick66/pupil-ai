@@ -281,10 +281,7 @@ function drawResponse(text, orientation) {
     for (var i = 0; i < wrappedLines.length; i++) {
       ctx.fillText(wrappedLines[i], cornerWidth, cornerHeight + ((i + 0.5) * lineheight));
     }
-    window.electronAPI.submitMessage("response-size", {
-      width: bubbleWidth,
-      height: bubbleHeight 
-    })
+
   }
 }
 
@@ -306,7 +303,6 @@ function displayHtmlContent(htmlContent) {
   }, 30000); // Adjust timeout as needed
 }
 
-// Function to perform text-to-speech
 function speak(text) {
   const speech = new SpeechSynthesisUtterance(text);
   speech.lang = 'hi-IN'; // Set the language of the speech
