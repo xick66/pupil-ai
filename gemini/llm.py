@@ -162,7 +162,7 @@ class GeminiLLM():
 if __name__ == "__main__":
     gemini = GeminiLLM()
 
-    response = gemini.query_search("what time is it now in Indonesia?")
+    response = gemini.query_search("what time is it now in India?")
     print(response)
     print(gemini.chat.history)
 

@@ -130,10 +130,10 @@
 //   const bubbleWidth = 2 * cornerWidth + borderWidth
 //   const bubbleHeight = 6 * cornerHeight + borderHeight
 
-//   window.electronAPI.submitMessage("response-size", {
-//     width: bubbleWidth,
-//     height: bubbleHeight 
-//   })
+  // window.electronAPI.submitMessage("response-size", {
+  //   width: bubbleWidth,
+  //   height: bubbleHeight 
+  // })
 
 //   if (id) { window.clearTimeout(id) }
 //   id = window.setTimeout(() => {
@@ -235,10 +235,8 @@ var id = null;
 
 function drawResponse(text, orientation) {
   if (text.includes('<img')) {
-    // If the text includes an image tag, render it as HTML
     displayHtmlContent(text);
   } else {
-    // Else, proceed with drawing text in a bubble as usual
     var borderHeight = 0;
     var borderWidth = 0;
     
@@ -283,6 +281,10 @@ function drawResponse(text, orientation) {
     for (var i = 0; i < wrappedLines.length; i++) {
       ctx.fillText(wrappedLines[i], cornerWidth, cornerHeight + ((i + 0.5) * lineheight));
     }
+    window.electronAPI.submitMessage("response-size", {
+      width: bubbleWidth,
+      height: bubbleHeight 
+    })
   }
 }
 
@@ -297,7 +299,6 @@ function displayHtmlContent(htmlContent) {
   
   document.body.appendChild(htmlContainer);
   
-  // Close the HTML content after a timeout
   if (id) { window.clearTimeout(id); }
   id = window.setTimeout(() => {
     document.body.removeChild(htmlContainer);
@@ -308,7 +309,7 @@ function displayHtmlContent(htmlContent) {
 // Function to perform text-to-speech
 function speak(text) {
   const speech = new SpeechSynthesisUtterance(text);
-  speech.lang = 'en-US'; // Set the language of the speech
+  speech.lang = 'hi-IN'; // Set the language of the speech
   window.speechSynthesis.speak(speech);
 }
 
