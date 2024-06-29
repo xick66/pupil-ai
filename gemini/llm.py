@@ -17,7 +17,6 @@ def list_files(directory):
     dir_len = len(directory)
     file_list = []
     for root, dirs, files in os.walk(directory):
-        # Remove hidden directories
         dirs[:] = [d for d in dirs if not d.startswith('.')]
         for file in files:
             if not file.startswith('.'):
@@ -170,33 +169,3 @@ if __name__ == "__main__":
     response = gemini.query("What's the best things to do at this time?")
     print(response)
     print(gemini.chat.history)
-
-    # gemini.append_history("Hello, How are you?", "Amazing, always happy to help you, how can I help you?")
-    # response = gemini.query("Which is one of the best place to visit in India during summer?")
-    # print(response)
-    # response = gemini.query("Tell me more about that place in 50 words")
-    # print(response)
-
-    # gemini.reset_history()
-
-    # response = gemini.query("I'd like to play some multiplayer online game, I heard a lot about league of legends or dota, what do you think?")
-    # print(response)
-    # response = gemini.query_with_image("D:\Visto\co-pet\sample-inputs\dota2.png", "What about this?")
-    # print(response)
-    # response = gemini.query("What's other games have similar genre?")
-    # print(response)
-
-    # gemini.reset_history()
-
-    # response = gemini.query("How do I make chicken noodle soup?")
-    # print(response)
-    # response = gemini.query_with_image("D:\Visto\co-pet\sample-inputs\dota2.png", "What about this?")
-    # print(response)
-    # response = gemini.query("What's other games have similar genre?")
-    # print(response)
-
-    # gemini.reset_history()
-
-    # response = gemini.query_directory("D:\Visto\co-pet")
-    # print(response)
-    

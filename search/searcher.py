@@ -14,7 +14,7 @@ class Searcher():
       include_raw_content:bool=False,
       exclude_domains:[str]=None,
       max_results:int=5,
-      search_depth:str="advanced", # basic/advanced
+      search_depth:str="advanced",
     ):
       self.tavily = TavilyClient(api_key=os.environ.get("TAVILY_API_KEY"))
       self.config = {
@@ -104,27 +104,6 @@ class Searcher():
 
 if __name__ == "__main__":
   searcher = Searcher()
-
-  # response = searcher.search(
-  #   query="what time is it based on this https://time.is/London?",
-  #   include_answer=True,
-  #   include_raw_content=True,
-  # )
-  # print(response)
-
-  # response = searcher.search(
-  #   query="site:https://time.is/London?",
-  #   include_answer=True,
-  #   include_raw_content=True,
-  # )
-  # print(response)
-
-  # response = searcher.search(
-  #   query="Summarize Sasha and the Beautiful Array problem in codeforces",
-  #   include_answer=True,
-  #   include_raw_content=False,
-  #   include_domains=["codeforces.com/problemset/problem/1929"]
-  # ) # output bener tp ga reasonable
   response = searcher.search(
     query="who is indonesia current president based on https://kemlu.go.id/bucharest/en/pages/presiden_republik_indonesia/3947/etc-menu",
     include_answer=True,
@@ -143,29 +122,6 @@ if __name__ == "__main__":
   print("============QNA==========")
   response = searcher.qna_search(query="what is 1 + 1 equal to?")
   print(response)
-
-
-
-  # response = searcher.search(
-  #   query="what time is it in london?",
-  #   include_answer=False,
-  #   # include_raw_content=True,
-  # )
-  # print(response)
-
-
-  # response = searcher.search(
-  #   query="Summarize Sasha and the Beautiful Array problem in codeforces",
-  #   max_results=5,
-  #   include_answer=True,
-  #   include_raw_content=True,
-  #   include_domains=["codeforces.com"])
-  # context = [{"url": obj["url"], "content": obj["content"]} for obj in response['results']]
-  # urls = [obj["url"] for obj in response['results']]
-  # print("urls", urls, end="\n\n\n\n\n")
-  # print("response", response, end="\n\n\n\n\n")
-  # print("context", context, end="\n\n\n\n\n")
-  # print("=========================")
 
   """
   {'query': 'Summarize Sasha and the Beautiful Array problem in codeforces', 'follow_up_questions': None, 'answer': "The Sasha and the Beautiful Array problem on Codeforces involves processing queries on an initially empty array. During each query, an integer is given, and it must be appended to the array if doing so maintains the array's beauty. The array remains beautiful if appending the integer does not disrupt its beauty.", 'images': None, 'results': [{'title': 'Problem - 1155D - Codeforces', 'url': 'https://codeforces.com/problemset/problem/1155/D', 'content': 'You are given an array a a consisting of n n integers. Beauty of array is the maximum sum of some consecutive subarray of this array (this subarray may be empty). For example, the beauty of the array [10, -5, 10, -4, 1] is 15, and the beauty of the array [-3, -5, -1] is 0. You may choose at most one consecutive subarray of a a and multiply all ...', 'score': 0.97352, 'raw_content': "You are given an array $$$a$$$ consisting of $$$n$$$ integers. Beauty of array is the maximum sum of some consecutive subarray of this array (this subarray may be empty). For example, the beauty of the array [10, -5, 10, -4, 1] is 15, and the beauty of the array [-3, -5, -1] is 0.\nYou may choose at most one consecutive subarray of $$$a$$$ and multiply all values contained in this subarray by $$$x$$$. You want to maximize the beauty of array after applying at most one such operation.\nThe first line contains two integers $$$n$$$ and $$$x$$$ ($$$1 \\le n \\le 3 \\cdot 10^5, -100 \\le x \\le 100$$$) — the length of array $$$a$$$ and the integer $$$x$$$ respectively.\nThe second line contains $$$n$$$ integers $$$a_1, a_2, \\dots, a_n$$$ ($$$-10^9 \\le a_i \\le 10^9$$$) — the array $$$a$$$.\nPrint one integer — the maximum possible beauty of array $$$a$$$ after multiplying all values belonging to some consecutive subarray $$$x$$$.\nIn the first test case we need to multiply the subarray [-2, 1, -6], and the array becomes [-3, 8, 4, -2, 12] with beauty 22 ([-3, 8, 4, -2, 12]).\nIn the second test case we don't need to multiply any subarray at all.\nIn the third test case no matter which subarray we multiply, the beauty of array will be equal to 0."}, {'title': 'Problem - 1841B - Codeforces', 'url': 'https://codeforces.com/problemset/problem/1841/B', 'content': 'You are given an array a a, which is initially empty. You have to process q q queries to it. During the i i -th query, you will be given one integer xi x i, and you have to do the following: if you can append the integer xi x i to the back of the array a a so that the array a a stays beautiful, you have to append it; otherwise, do nothing.', 'score': 0.93766, 'raw_content': 'The array $$$[a_1, a_2, \\dots, a_k]$$$ is called beautiful if it is possible to remove several (maybe zero) elements from the beginning of the array and insert all these elements to the back of the array in the same order in such a way that the resulting array is sorted in non-descending order.\nIn other words, the array $$$[a_1, a_2, \\dots, a_k]$$$ is beautiful if there exists an integer $$$i \\in [0, k-1]$$$ such that the array $$$[a_{i+1}, a_{i+2}, \\dots, a_{k-1}, a_k, a_1, a_2, \\dots, a_i]$$$ is sorted in non-descending order.\nFor example:\nNote that any array consisting of zero elements or one element is beautiful.\nYou are given an array $$$a$$$, which is initially empty. You have to process $$$q$$$ queries to it. During the $$$i$$$-th query, you will be given one integer $$$x_i$$$, and you have to do the following:\nAfter each query, report whether you appended the given integer $$$x_i$$$, or not.\nThe first line contains one integer $$$t$$$ ($$$1 \\le t \\le 10^4$$$) — the number of test cases.\nEach test case consists of two lines. The first line contains one integer $$$q$$$ ($$$1 \\le q \\le 2 \\cdot 10^5$$$) — the number of queries. The second line contains $$$q$$$ integers $$$x_1, x_2, \\dots, x_q$$$ ($$$0 \\le x_i \\le 10^9$$$).\nAdditional constraint on the input: the sum of $$$q$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$).\nFor each test case, print one string consisting of exactly $$$q$$$ characters. The $$$i$$$-th character of the string should be 1 if you appended the integer during the $$$i$$$-th query; otherwise, it should be 0.\nConsider the first test case of the example. Initially, the array is $$$[]$$$.'}, {'title': 'Problem - 1929A - Codeforces', 'url': 'https://codeforces.com/problemset/problem/1929/A', 'content': 'The first line contains a single integer t t ( 1 ≤ t ≤ 500 1 ≤ t ≤ 500) — the number of test cases. The description of the test cases follows. The first line of each test case contains a single integer n n ( 2 ≤ n ≤ 100 2 ≤ n ≤ 100) — the length of the array a a. The second line of each test case contains n n integers a1,a2 ...', 'score': 0.92485, 'raw_content': 'Sasha decided to give his girlfriend an array $$$a_1, a_2, \\ldots, a_n$$$. He found out that his girlfriend evaluates the beauty of the array as the sum of the values $$$(a_i - a_{i - 1})$$$ for all integers $$$i$$$ from $$$2$$$ to $$$n$$$.\nHelp Sasha and tell him the maximum beauty of the array $$$a$$$ that he can obtain, if he can rearrange its elements in any way.\nEach test consists of multiple test cases. The first line contains a single integer $$$t$$$ ($$$1 \\le t \\le 500$$$) — the number of test cases. The description of the test cases follows.\nThe first line of each test case contains a single integer $$$n$$$ ($$$2 \\leq n \\leq 100$$$) — the length of the array $$$a$$$.\nThe second line of each test case contains $$$n$$$ integers $$$a_1, a_2, \\ldots, a_n$$$ ($$$1 \\leq a_i \\leq 10^9$$$) — the elements of the array $$$a$$$.\nFor each test case, output a single integer — the maximum beauty of the array $$$a$$$ that can be obtained.\nIn the first test case, the elements of the array $$$a$$$ can be rearranged to make $$$a = [1, 2, 3]$$$. Then its beauty will be equal to $$$(a_2 - a_1) + (a_3 - a_2) = (2 - 1) + (3 - 2) = 2$$$.\nIn the second test case, there is no need to rearrange the elements of the array $$$a$$$. Then its beauty will be equal to $$$0$$$.'}, {'title': 'Problem - 1929C - Codeforces', 'url': 'https://codeforces.com/problemset/problem/1929/C', 'content': '256 megabytes. input. standard input. output. standard output. Sasha decided to give his girlfriend the best handbag, but unfortunately for Sasha, it is very expensive. Therefore, Sasha wants to earn it. After looking at earning tips on the internet, he decided to go to the casino. Sasha knows that the casino operates under the following rules.', 'score': 0.90903, 'raw_content': 'Sasha decided to give his girlfriend the best handbag, but unfortunately for Sasha, it is very expensive. Therefore, Sasha wants to earn it. After looking at earning tips on the internet, he decided to go to the casino.\nSasha knows that the casino operates under the following rules. If Sasha places a bet of $$$y$$$ coins (where $$$y$$$ is a positive integer), then in case of winning, he will receive $$$y \\cdot k$$$ coins (i.e., his number of coins will increase by $$$y \\cdot (k - 1)$$$). And in case of losing, he will lose the entire bet amount (i.e., his number of coins will decrease by $$$y$$$).\nNote that the bet amount must always be a positive ($$$> 0$$$) integer and cannot exceed Sasha\'s current number of coins.\nSasha also knows that there is a promotion at the casino: he cannot lose more than $$$x$$$ times in a row.\nInitially, Sasha has $$$a$$$ coins. He wonders whether he can place bets such that he is guaranteed to win any number of coins. In other words, is it true that for any integer $$$n$$$, Sasha can make bets so that for any outcome that does not contradict the rules described above, at some moment of time he will have at least $$$n$$$ coins.\nEach test consists of multiple test cases. The first line contains a single integer $$$t$$$ ($$$1 \\le t \\le 1000$$$) — the number of test cases. The description of the test cases follows.\nThe single line of each test case contains three integers $$$k, x$$$ and $$$a$$$ ($$$2 \\leq k \\leq 30$$$, $$$1 \\leq x \\leq 100$$$, $$$1 \\leq a \\leq 10^9$$$) — the number of times the bet is increased in case of a win, the maximum number of consecutive losses, and the initial number of coins Sasha has.\nFor each test case, output "YES" (without quotes) if Sasha can achieve it and "NO" (without quotes) otherwise.\nYou can output "YES" and "NO" in any case (for example, the strings "yEs", "yes" and "Yes" will be recognized as a positive answer).\nIn the first test case, Sasha can proceed as follows:\nNote that Sasha cannot lose more than once in a row.\nIt can be proven that with this strategy, Sasha can obtain as many coins as he wants.\nIn the second test case, Sasha can only place $$$1$$$ coin for the first time. But in case of a loss, he will not be able to place any more bets, so he will not be able to guarantee having as many coins as he wants.'}, {'title': 'Problem - 1954B - Codeforces', 'url': 'https://codeforces.com/problemset/problem/1954/B', 'content': 'In the first testcase, it is impossible to modify the array in such a way that it stops being beautiful. An array consisting of identical numbers will remain beautiful no matter how many numbers we remove from it. In the second testcase, you can remove the number at the index $$$5$$$, for example. The resulting array will be $$$[1, 2, 1, 2]$$$.', 'score': 0.90586, 'raw_content': "Let's call an array $$$a$$$ beautiful if you can make all its elements the same by using the following operation an arbitrary number of times (possibly, zero):\nYou are given a beautiful array $$$a_1, a_2, \\dots, a_n$$$. What is the minimum number of elements you have to remove from it in order for it to stop being beautiful? Swapping elements is prohibited. If it is impossible to do so, then output -1.\nThe first line contains a single integer $$$t$$$ ($$$1 \\le t \\le 10^4$$$)\xa0— the number of test cases.\nThe first line of each test case contains a single integer $$$n$$$ ($$$1 \\le n \\le 3 \\cdot 10^5$$$).\nThe second line contains $$$n$$$ integers $$$a_1, a_2, \\dots, a_n$$$ ($$$1 \\le a_i \\le n$$$).\nAdditional constraints on the input:\nFor each test case, output a single integer\xa0— the minimum number of elements you have to remove from the array $$$a$$$ in order for it to stop being beautiful. If it is impossible, then output -1.\nIn the first testcase, it is impossible to modify the array in such a way that it stops being beautiful. An array consisting of identical numbers will remain beautiful no matter how many numbers we remove from it.\nIn the second testcase, you can remove the number at the index $$$5$$$, for example.\nThe resulting array will be $$$[1, 2, 1, 2]$$$. Let's check if it is beautiful. Two operations are available:\nThus, the array $$$[1, 2, 1, 2]$$$ is not beautiful.\nIn the fourth testcase, you can remove the first three elements, for example. The resulting array $$$[5, 3, 3, 3]$$$ is not beautiful."}], 'response_time': 3.74}

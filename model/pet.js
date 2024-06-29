@@ -120,7 +120,6 @@ class Pet {
       this.actionTick -= 1; 
     }
 
-    // end action
     if (this.actionTick <= 0) {
       let act = randomAction([
         this.K_ACTION_WALK,
